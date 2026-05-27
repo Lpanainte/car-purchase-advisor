@@ -16,7 +16,8 @@ namespace CarPurchaseAdvisor.Controllers
         public IActionResult Index()
         {
             var cars = _context.Cars
-                .OrderByDescending(x => x.Price)
+                .AsEnumerable()
+.OrderByDescending(x => x.Price)
                 .ToList();
 
             return View(cars);
@@ -85,15 +86,17 @@ namespace CarPurchaseAdvisor.Controllers
             else if (type == "Sport")
             {
                 recommendedCar =
-                    _context.Cars
-                    .OrderByDescending(x => x.Horsepower)
-                    .FirstOrDefault();
+     _context.Cars
+     .AsEnumerable()
+     .OrderByDescending(x => x.Price)
+     .FirstOrDefault();
             }
 
             else if (budget == "Luxury")
             {
                 recommendedCar =
                     _context.Cars
+                    .AsEnumerable()
                     .OrderByDescending(x => x.Price)
                     .FirstOrDefault();
             }
@@ -135,5 +138,6 @@ namespace CarPurchaseAdvisor.Controllers
 
             return View(cars);
         }
+
     }
 }

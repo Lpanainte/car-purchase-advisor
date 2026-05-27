@@ -1,0 +1,76 @@
+﻿@model List<CarPurchaseAdvisor.Models.Car>
+<style>
+
+    body {
+        background: linear-gradient(to right,#0f172a,#1e293b);
+        color: white;
+        font-family: Arial;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 95%;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+</style>
+<div class="container">
+
+    <h1>❤️ Favorite Cars</h1>
+
+</div>
+<h1 style="color:white; text-align:center;">
+    Favorite Cars ❤️
+</h1>
+
+<div id="favoritesContainer"
+     style="display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;">
+</div>
+
+<script>
+
+    let favorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+
+    let allCars =
+        @Html.Raw(Json.Serialize(Model));
+
+    let container =
+        document.getElementById("favoritesContainer");
+
+    let filteredCars =
+        allCars.filter(x =>
+            favorites.includes(x.id.toString())
+        );
+
+    filteredCars.forEach(car =>
+    {
+        container.innerHTML += `
+            <div style="
+                background:#1e293b;
+                padding:20px;
+                border-radius:20px;
+                width:250px;
+                color:white;
+                text-align:center;">
+
+                <img src="${car.imageUrl}"
+                     style="
+                        width:100%;
+                        border-radius:15px;" />
+
+                <h2>${car.brand}</h2>
+
+                <p>${car.model}</p>
+
+                <p>${car.price} €</p>
+
+            </div>
+        `;
+    });
+
+</script>

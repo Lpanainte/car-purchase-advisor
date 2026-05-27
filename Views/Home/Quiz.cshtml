@@ -1,0 +1,274 @@
+﻿<style>
+
+    body {
+        background: linear-gradient(to right,#0f172a,#1e293b);
+        color: white;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 700px;
+        margin: auto;
+        margin-top: 60px;
+        background: #111827;
+        padding: 40px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    select {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 25px;
+        border: none;
+        border-radius: 10px;
+        background: #1f2937;
+        color: white;
+    }
+
+    button {
+        background: linear-gradient(to right,#7c3aed,#2563eb);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 12px;
+        font-size: 18px;
+    }
+
+</style>
+<style>
+
+    body {
+        background: linear-gradient(to right,#0f172a,#1e293b);
+        color: white;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 700px;
+        margin: auto;
+        margin-top: 50px;
+        background: #111827;
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 0 25px rgba(124,58,237,0.3);
+    }
+
+    h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        margin-top: 30px;
+    }
+
+    select {
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        border: none;
+        background: #1f2937;
+        color: white;
+        margin-top: 10px;
+    }
+
+    button {
+        margin-top: 40px;
+        background: linear-gradient(to right,#7c3aed,#2563eb);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 12px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .result {
+        margin-top: 40px;
+        background: #1f2937;
+        padding: 30px;
+        border-radius: 20px;
+        display: none;
+    }
+
+</style>
+
+<div class="container">
+
+    <h1>Smart Car Quiz</h1>
+
+    <p>
+        Find your perfect 2026 vehicle.
+    </p>
+
+    <div class="question">
+
+        <h3>Budget</h3>
+
+        <select id="budget">
+            <option>Under 100k</option>
+            <option>100k-300k</option>
+            <option>Unlimited</option>
+        </select>
+
+    </div>
+
+    <div class="question">
+
+        <h3>Fuel Type</h3>
+
+        <select id="fuel">
+            <option>Petrol</option>
+            <option>Electric</option>
+            <option>Hybrid</option>
+        </select>
+
+    </div>
+
+    <div class="question">
+
+        <h3>Performance</h3>
+        <div class="question">
+
+            <h3>Driving Style</h3>
+
+            <select id="style">
+                <option>Luxury</option>
+                <option>Track Racing</option>
+                <option>Daily Driving</option>
+                <option>Futuristic</option>
+            </select>
+
+        </div>
+
+        <select id="performance">
+            <option>300+ HP</option>
+            <option>500+ HP</option>
+            <option>1000+ HP</option>
+        </select>
+
+    </div>
+
+    <button onclick="generateRecommendation()">
+        Find My Car
+    </button>
+
+    <div class="result" id="result">
+
+        <h2 id="carName"></h2>
+
+        <p id="carDescription"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+    function generateRecommendation(){
+
+        let fuel =
+            document.getElementById("fuel").value;
+
+        let performance =
+            document.getElementById("performance").value;
+            let style =
+    document.getElementById("style").value;
+
+        let result =
+            document.getElementById("result");
+
+        let carName =
+            document.getElementById("carName");
+
+        let carDescription =
+            document.getElementById("carDescription");
+
+       
+    if(fuel == "Electric")
+    {
+        carName.innerHTML =
+            "Tesla Roadster";
+
+        carDescription.innerHTML =
+            "You prefer futuristic electric hypercars with extreme acceleration.";
+    }
+    else if(style == "Track Racing")
+    {
+        carName.innerHTML =
+            "Lamborghini Revuelto";
+
+        carDescription.innerHTML =
+            "You are a true performance enthusiast focused on speed and aggressive design.";
+    }
+    else if(performance == "1000+ HP")
+    {
+        carName.innerHTML =
+            "Bugatti Chiron";
+
+        carDescription.innerHTML =
+            "You seek ultimate speed and elite hypercar engineering.";
+    }
+    else
+    {
+        carName.innerHTML =
+            "BMW M5 CS";
+
+        carDescription.innerHTML =
+            "You enjoy balanced luxury and high-performance daily driving.";
+    }
+
+    result.style.display = "block";
+    }
+</script>
+
+<div class="container">
+
+    <h1>
+        Find Your Perfect Car
+    </h1>
+
+    <form method="post">
+
+        <select name="budget">
+
+            <option>Budget</option>
+
+            <option>Affordable</option>
+
+            <option>Luxury</option>
+
+        </select>
+
+        <select name="fuel">
+
+            <option>Fuel Type</option>
+
+            <option>Petrol</option>
+
+            <option>Electric</option>
+
+        </select>
+
+        <select name="type">
+
+            <option>Car Type</option>
+
+            <option>Sport</option>
+
+            <option>Luxury</option>
+
+        </select>
+
+        <button type="submit">
+            Find Car
+        </button>
+
+    </form>
+
+</div>

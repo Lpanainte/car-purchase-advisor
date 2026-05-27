@@ -1,0 +1,68 @@
+﻿@@model CarPurchaseAdvisor.Models.Car
+
+<style>
+
+    body {
+        background: linear-gradient(to right,#0f172a,#1e293b);
+        color: white;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 900px;
+        margin: auto;
+        margin-top: 50px;
+        background: #111827;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 20px;
+        margin-top: 30px;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 30px;
+        background: linear-gradient(to right,#7c3aed,#2563eb);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 12px;
+        text-decoration: none;
+    }
+
+</style>
+
+<div class="container">
+
+    <h1>
+        Recommended Car
+    </h1>
+
+    <h2>
+        @Model.Brand @Model.Model
+    </h2>
+
+    <img src="@Model.ImageUrl" />
+
+    <h2>
+        @Model.Price €
+    </h2>
+
+    <p>
+        @Model.Horsepower HP
+    </p>
+
+    <a href="/Home/Index"
+           class="btn">
+        Back Home
+    </a>
+
+</div>

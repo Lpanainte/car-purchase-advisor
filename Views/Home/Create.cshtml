@@ -1,0 +1,95 @@
+@model CarPurchaseAdvisor.Models.Car
+
+<style>
+
+    body {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        color: white;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 600px;
+        margin: auto;
+        margin-top: 50px;
+        background: #111827;
+        padding: 40px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: none;
+        background: #1f2937;
+        color: white;
+        box-sizing: border-box;
+    }
+
+    button {
+        background: linear-gradient(to right, #7c3aed, #2563eb);
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .text-danger {
+        color: #f87171;
+        display: block;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+</style>
+
+<div class="container">
+
+    <h1>Add New Car</h1>
+
+    <form method="post">
+
+        <input asp-for="Brand" placeholder="Brand" />
+        <span asp-validation-for="Brand"
+              class="text-danger"></span>
+
+        <input asp-for="Model" placeholder="Model" />
+        <span asp-validation-for="Model"
+              class="text-danger"></span>
+
+        <input asp-for="Year" placeholder="Year" />
+        <span asp-validation-for="Year"
+              class="text-danger"></span>
+
+        <input asp-for="Price" placeholder="Price" />
+        <span asp-validation-for="Price"
+              class="text-danger"></span>
+
+        <input asp-for="FuelType" placeholder="Fuel Type" />
+        <span asp-validation-for="FuelType"
+              class="text-danger"></span>
+
+        <input asp-for="Horsepower" placeholder="Horsepower" />
+        <span asp-validation-for="Horsepower"
+              class="text-danger"></span>
+
+        <input asp-for="ImageUrl" placeholder="Image URL" />
+
+        <button type="submit">
+            Save Car
+        </button>
+
+    </form>
+
+</div>

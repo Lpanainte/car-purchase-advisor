@@ -1,0 +1,165 @@
+﻿@model List<CarPurchaseAdvisor.Models.Car>
+
+<style>
+
+body{
+    background:linear-gradient(to right,#0f172a,#1e293b);
+    color:white;
+    font-family:Arial;
+}
+
+.container{
+    width:1000px;
+    margin:auto;
+    margin-top:50px;
+}
+
+h1{
+    font-size:55px;
+    margin-bottom:40px;
+}
+
+.selects{
+    display:flex;
+    gap:20px;
+}
+
+select{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:none;
+    background:#111827;
+    color:white;
+    font-size:18px;
+}
+
+button{
+    margin-top:30px;
+    background:linear-gradient(to right,#7c3aed,#2563eb);
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.compare-box{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+}
+
+.card{
+    flex:1;
+    background:#111827;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 25px rgba(124,58,237,0.3);
+}
+
+.card h2{
+    font-size:40px;
+}
+
+.stat{
+    margin-top:20px;
+    font-size:20px;
+    color:#94a3b8;
+}
+
+</style>
+
+<div class="container">
+
+    <h1>Compare Cars</h1>
+
+    <div class="selects">
+
+        <select id="car1">
+
+            @foreach(var car in Model)
+            {
+                <option
+                    value="@car.Brand|@car.Model|@car.Year|@car.Price|@car.Horsepower|@car.FuelType">
+
+                    @car.Brand @car.Model
+
+                </option>
+            }
+
+        </select>
+
+        <select id="car2">
+
+            @foreach(var car in Model)
+            {
+                <option
+                    value="@car.Brand|@car.Model|@car.Year|@car.Price|@car.Horsepower|@car.FuelType">
+
+                    @car.Brand @car.Model
+
+                </option>
+            }
+
+        </select>
+
+    </div>
+
+    <button onclick="compareCars()">
+        Compare
+    </button>
+
+    <div class="compare-box">
+
+        <div class="card" id="result1"></div>
+
+        <div class="card" id="result2"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+function compareCars(){
+
+    let car1 =
+        document.getElementById("car1")
+        .value
+        .split("|");
+
+    let car2 =
+        document.getElementById("car2")
+        .value
+        .split("|");
+
+    document.getElementById("result1").innerHTML =
+    `
+        <h2>${car1[0]} ${car1[1]}</h2>
+
+        <div class="stat">Year: ${car1[2]}</div>
+
+        <div class="stat">Price: €${car1[3]}</div>
+
+        <div class="stat">Horsepower: ${car1[4]} HP</div>
+
+        <div class="stat">Fuel: ${car1[5]}</div>
+    `;
+
+    document.getElementById("result2").innerHTML =
+    `
+        <h2>${car2[0]} ${car2[1]}</h2>
+
+        <div class="stat">Year: ${car2[2]}</div>
+
+        <div class="stat">Price: €${car2[3]}</div>
+
+        <div class="stat">Horsepower: ${car2[4]} HP</div>
+
+        <div class="stat">Fuel: ${car2[5]}</div>
+    `;
+}
+
+</script>

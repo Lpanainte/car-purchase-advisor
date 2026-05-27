@@ -1,0 +1,66 @@
+﻿@model CarPurchaseAdvisor.Models.Car
+
+<style>
+
+body{
+    background:linear-gradient(to right,#0f172a,#1e293b);
+    color:white;
+    font-family:Arial;
+}
+
+.container{
+    width:600px;
+    margin:auto;
+    margin-top:50px;
+    background:#111827;
+    padding:40px;
+    border-radius:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border-radius:10px;
+    border:none;
+}
+
+button{
+    background:linear-gradient(to right,#7c3aed,#2563eb);
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:10px;
+}
+
+</style>
+
+<div class="container">
+
+<h1>Edit Car</h1>
+
+<form method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <input asp-for="Brand" placeholder="Brand" />
+
+    <input asp-for="Model" placeholder="Model" />
+
+    <input asp-for="Year" placeholder="Year" />
+
+    <input asp-for="Price" placeholder="Price" />
+
+    <input asp-for="FuelType" placeholder="Fuel Type" />
+
+    <input asp-for="Horsepower" placeholder="Horsepower" />
+
+    <input asp-for="ImageUrl" placeholder="Image URL" />
+
+    <button type="submit">
+        Save Changes
+    </button>
+
+</form>
+
+</div>

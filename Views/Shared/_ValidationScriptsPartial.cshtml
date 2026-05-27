@@ -1,0 +1,58 @@
+﻿@model CarPurchaseAdvisor.Models.Car
+
+<style>
+
+    body {
+        background: linear-gradient(to right,#0f172a,#1e293b);
+        color: white;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 900px;
+        margin: auto;
+        margin-top: 50px;
+        background: #111827;
+        padding: 40px;
+        border-radius: 20px;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 20px;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .info {
+        margin-top: 20px;
+        font-size: 22px;
+        line-height: 2;
+    }
+
+</style>
+
+<div class="container">
+    s
+    <img src="@Model.ImageUrl" />
+
+    <h1>
+        @Model.Brand @Model.Model
+    </h1>
+
+    <div class="info">
+
+        <p><b>Year:</b> @Model.Year</p>
+
+        <p><b>Price:</b> @Model.Price €</p>
+
+        <p><b>Fuel:</b> @Model.FuelType</p>
+
+        <p><b>Horsepower:</b> @Model.Horsepower HP</p>
+
+    </div>
+
+</div>

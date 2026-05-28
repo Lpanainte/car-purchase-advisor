@@ -17,7 +17,7 @@ namespace CarPurchaseAdvisor.Models
 
         [Range(1, 100000000)]
         public int Price { get; set; }
-        public int Price { get; set; }
+     
 
         [Required]
         public string? FuelType { get; set; }

@@ -16,7 +16,8 @@ namespace CarPurchaseAdvisor.Models
         public int Year { get; set; }
 
         [Range(1, 100000000)]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
+        public int Price { get; set; }
 
         [Required]
         public string? FuelType { get; set; }

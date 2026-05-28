@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CarPurchaseAdvisor.Data;
 using CarPurchaseAdvisor.Models;
+using System.Linq;
 
 namespace CarPurchaseAdvisor.Controllers
 {
@@ -17,7 +18,7 @@ namespace CarPurchaseAdvisor.Controllers
         {
             var cars = _context.Cars
                 .AsEnumerable()
-.OrderByDescending(x => x.Price)
+                .OrderByDescending(x => x.Price)
                 .ToList();
 
             return View(cars);
@@ -86,10 +87,10 @@ namespace CarPurchaseAdvisor.Controllers
             else if (type == "Sport")
             {
                 recommendedCar =
-     _context.Cars
-     .AsEnumerable()
-     .OrderByDescending(x => x.Price)
-     .FirstOrDefault();
+                    _context.Cars
+                    .AsEnumerable()
+                    .OrderByDescending(x => x.Price)
+                    .FirstOrDefault();
             }
 
             else if (budget == "Luxury")
@@ -132,12 +133,12 @@ namespace CarPurchaseAdvisor.Controllers
 
             return View(cars);
         }
+
         public IActionResult Favorites()
         {
             var cars = _context.Cars.ToList();
 
             return View(cars);
         }
-
     }
 }

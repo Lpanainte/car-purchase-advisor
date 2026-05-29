@@ -603,16 +603,7 @@ justify-content:center;
             <p>Horsepower</p>
         </div>
 
-        <a asp-controller="Home"
-           asp-action="Favorites"
-           class="favorite-card">
-
-            <div>
-                <h3>❤️ Favorite Cars</h3>
-                <p>View your favorites</p>
-            </div>
-
-        </a>
+   
 
     </div>
 
@@ -759,67 +750,8 @@ justify-content:center;
                 ? ""
                 : "none";
         });
-        document.getElementById("noResults").style.display =
-    visibleRows === 0
-    ? "block"
-    : "none";
-    if(row.style.display !== "none")
-{
-    visibleRows++;
-}
     });
 
 </script>
-<script>
 
-    let favorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
-
-    function toggleFavorite(button, carId)
-    {
-        carId = carId.toString();
-
-        if(favorites.includes(carId))
-        {
-            favorites =
-                favorites.filter(x => x !== carId);
-
-            button.innerHTML = "♡";
-
-            button.style.background = "#374151";
-        }
-        else
-        {
-            favorites.push(carId);
-
-            button.innerHTML = "♥";
-
-            button.style.background = "#ef4444";
-        }
-
-        localStorage.setItem(
-            "favorites",
-            JSON.stringify(favorites)
-        );
-    }
-
-    window.onload = function()
-    {
-        let buttons =
-            document.querySelectorAll(".favorite-btn");
-
-        buttons.forEach((button) =>
-        {
-            let carId =
-                button.getAttribute("data-id");
-
-            if(favorites.includes(carId))
-            {
-                button.innerHTML = "♥";
-
-                button.style.background = "#ef4444";
-            }
-        });
-    }
-
-</script>
+<script> let favorites = JSON.parse(localStorage.getItem("favorites")) || []; function toggleFavorite(button, carId) { carId = carId.toString(); if(favorites.includes(carId)) { favorites = favorites.filter(x => x !== carId); button.innerHTML = "♡"; button.style.background = "#374151"; } else { favorites.push(carId); button.innerHTML = "♥"; button.style.background = "#ef4444"; } localStorage.setItem( "favorites", JSON.stringify(favorites) ); } window.onload = function() { let buttons = document.querySelectorAll(".favorite-btn"); buttons.forEach((button) => { let carId = button.getAttribute("data-id"); if(favorites.includes(carId)) { button.innerHTML = "♥"; button.style.background = "#ef4444"; } }); } </script>

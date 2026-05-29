@@ -28,7 +28,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
                 Price = 5200000,
                 FuelType = "Petrol",
                 Horsepower = 1500,
-                ImageUrl = "https://cdn.pixabay.com/photo/2020/01/19/17/26/bugatti-4776752_1280.jpg"
+                ImageUrl = "/images/bugatti.jpg"
             },
 
             new Car
@@ -39,8 +39,9 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
                 Price = 120000,
                 FuelType = "Electric",
                 Horsepower = 1020,
-                ImageUrl = "https://cdn.pixabay.com/photo/2021/09/29/09/04/tesla-6660316_1280.jpg"
+                ImageUrl = "/images/tesla.jpg"
             },
+      
 
             new Car
             {
@@ -50,7 +51,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
                 Price = 650000,
                 FuelType = "Hybrid",
                 Horsepower = 1000,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/91/Ferrari_SF90_Stradale_Genf_2019_1Y7A5661.jpg"
+                ImageUrl = "/images/ferrari.jpg"
             },
 
             new Car
@@ -61,7 +62,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
                 Price = 700000,
                 FuelType = "Hybrid",
                 Horsepower = 1001,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/f/f7/Lamborghini_Revuelto.jpg"
+                ImageUrl = "/images/lamborghini.jpg"
             },
 
             new Car
@@ -72,7 +73,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
                 Price = 280000,
                 FuelType = "Petrol",
                 Horsepower = 650,
-                ImageUrl = "https://cdn.pixabay.com/photo/2016/04/01/12/11/porsche-1300233_1280.png"
+                ImageUrl = "/images/porsche.jpg"
             }
 
         );

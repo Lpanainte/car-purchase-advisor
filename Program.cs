@@ -1,5 +1,6 @@
 using CarPurchaseAdvisor.Data;
 using CarPurchaseAdvisor.Models;
+app.UseStaticFiles();
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

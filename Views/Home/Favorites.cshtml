@@ -1,76 +1,287 @@
 ﻿@model List<CarPurchaseAdvisor.Models.Car>
-<style>
 
+<style>
     body {
-        background: linear-gradient(to right,#0f172a,#1e293b);
+        background: linear-gradient(to right, #0f172a, #1e293b);
         color: white;
         font-family: Arial;
-        min-height: 100vh;
     }
 
     .container {
         width: 95%;
+        max-width: 1800px;
         margin: auto;
         margin-top: 40px;
     }
 
+    h1 {
+        font-size: 56px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #94a3b8;
+        margin-bottom: 30px;
+        font-size: 18px;
+    }
+
+    .top-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        gap: 20px;
+    }
+
+    .btn {
+        background: linear-gradient(to right, #7c3aed, #2563eb);
+        color: white;
+        padding: 18px 24px;
+        border-radius: 18px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+    .remove-btn {
+        background: linear-gradient(to right, #ec4899, #ef4444);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .details-btn {
+        background: #2563eb;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: separate;
+        border-spacing: 0 14px;
+        background: #111827;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(0,0,0,0.35);
+    }
+
+    tr {
+        background: #0b1120;
+        transition: 0.3s;
+    }
+
+        tr:hover {
+            transform: scale(1.01);
+            background: #111827;
+        }
+
+    th {
+        background: linear-gradient(to right, #131c31, #1e293b);
+        padding: 24px;
+        text-align: center;
+        color: #cbd5e1;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    td {
+        padding: 24px 16px;
+        border-bottom: 1px solid #374151;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    img {
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+    .empty-box {
+        margin-top: 60px;
+        background: #0b1120;
+        border-radius: 28px;
+        padding: 60px;
+        text-align: center;
+        box-shadow: 0 0 35px rgba(124,58,237,0.18);
+        border: 1px solid rgba(124,58,237,0.18);
+    }
+
+        .empty-box h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .empty-box p {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+    .counter-card {
+        background: #0b1120;
+        padding: 20px 28px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(124,58,237,0.15);
+        border: 1px solid rgba(124,58,237,0.18);
+        font-size: 20px;
+        font-weight: bold;
+    }
 </style>
+
 <div class="container">
 
-    <h1>❤️ Favorite Cars</h1>
+    <div class="top-actions">
+        <div>
+            <h1>❤️ Favourite Cars</h1>
+            <p class="subtitle">
+                These are the cars you saved by pressing the heart button.
+            </p>
+        </div>
 
-</div>
-<h1 style="color:white; text-align:center;">
-    Favorite Cars ❤️
-</h1>
+        <div style="display:flex; gap:15px; align-items:center;">
+            <div class="counter-card">
+                Saved: <span id="favoriteCount">0</span>
+            </div>
 
-<div id="favoritesContainer"
-     style="display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-    justify-content:center;">
+            <a href="/Home/Index" class="btn">
+                ⬅ Back to Cars
+            </a>
+        </div>
+    </div>
+
+    <div id="emptyMessage" class="empty-box" style="display:none;">
+        <h2>No favourite cars yet</h2>
+        <p>Go back to the main page and press the heart icon on the cars you like.</p>
+
+        <a href="/Home/Index" class="btn">
+            Browse Cars
+        </a>
+    </div>
+
+    <table id="favoritesTable">
+
+        <tr>
+            <th>Image</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Price</th>
+            <th>Fuel</th>
+            <th>Horsepower</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var car in Model)
+        {
+            <tr class="favorite-row" data-id="@car.Id">
+
+                <td>
+                    <img src="@car.ImageUrl"
+                         width="240"
+                         onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop'" />
+                </td>
+
+                <td>@car.Brand</td>
+
+                <td>@car.Model</td>
+
+                <td>@car.Year</td>
+
+                <td>@car.Price €</td>
+
+                <td>@car.FuelType</td>
+
+                <td>@car.Horsepower HP</td>
+
+                <td>
+                    <div style="display:flex; justify-content:center; gap:10px;">
+                        <a href="/Home/Details/@car.Id" class="details-btn">
+                            Details
+                        </a>
+
+                        <button class="remove-btn" onclick="removeFavorite('@car.Id')">
+                            Remove
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
 </div>
 
 <script>
+    function getFavorites() {
+        return JSON.parse(localStorage.getItem("favorites")) || [];
+    }
 
-    let favorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
+    function renderFavoriteCars() {
+        const favorites = getFavorites();
+        const rows = document.querySelectorAll(".favorite-row");
+        const table = document.getElementById("favoritesTable");
+        const emptyMessage = document.getElementById("emptyMessage");
+        const favoriteCount = document.getElementById("favoriteCount");
 
-    let allCars =
-        @Html.Raw(Json.Serialize(Model));
+        let visibleCount = 0;
 
-    let container =
-        document.getElementById("favoritesContainer");
+        rows.forEach(row => {
+            const carId = row.getAttribute("data-id");
 
-    let filteredCars =
-        allCars.filter(x =>
-            favorites.includes(x.id.toString())
-        );
+            if (favorites.includes(carId)) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
+        });
 
-    filteredCars.forEach(car =>
-    {
-        container.innerHTML += `
-            <div style="
-                background:#1e293b;
-                padding:20px;
-                border-radius:20px;
-                width:250px;
-                color:white;
-                text-align:center;">
+        favoriteCount.innerText = visibleCount;
 
-                <img src="${car.imageUrl}"
-                     style="
-                        width:100%;
-                        border-radius:15px;" />
+        if (visibleCount === 0) {
+            table.style.display = "none";
+            emptyMessage.style.display = "block";
+        } else {
+            table.style.display = "table";
+            emptyMessage.style.display = "none";
+        }
+    }
 
-                <h2>${car.brand}</h2>
+    function removeFavorite(carId) {
+        let favorites = getFavorites();
 
-                <p>${car.model}</p>
+        favorites = favorites.filter(id => id !== carId.toString());
 
-                <p>${car.price} €</p>
+        localStorage.setItem("favorites", JSON.stringify(favorites));
 
-         </div>
-`;
-    });
+        renderFavoriteCars();
+    }
 
+    renderFavoriteCars();
 </script>

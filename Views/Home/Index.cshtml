@@ -1,5 +1,15 @@
 ﻿@model List<CarPurchaseAdvisor.Models.Car>
+@{
+    var maxPrice = Model.Count > 0 ? Model[0].Price : 0;
 
+    foreach (var car in Model)
+    {
+        if (car.Price > maxPrice)
+        {
+            maxPrice = car.Price;
+        }
+    }
+}
 <style>
 
     body {
@@ -8,6 +18,16 @@
         font-family: Arial;
     }
 
+    .car-link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .car-link:hover {
+            color: #a855f7;
+            text-decoration: underline;
+        }
     .container {
         width: 95%;
         max-width:1800px;
@@ -87,7 +107,7 @@ overflow:hidden;
         text-decoration: none;
         margin-right: 10px;
     }
-
+ 
     .delete-btn {
         background: red;
         color: white;
@@ -312,9 +332,7 @@ justify-content:center;
 .action-buttons{
     display:grid;
 
-    grid-template-columns:
-    repeat(3, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap:20px;
 
     margin-bottom:25px;
@@ -567,6 +585,10 @@ justify-content:center;
             ⚖️ Compare Cars
         </a>
 
+        <a href="/Home/Favorites" class="btn">
+            ❤️ See Favourite Cars
+        </a>
+
     </div>
 
     <div class="search-section">
@@ -586,6 +608,7 @@ justify-content:center;
 
     </div>
 
+    
     <div class="stats-row">
 
         <div class="mini-stat">
@@ -603,7 +626,10 @@ justify-content:center;
             <p>Horsepower</p>
         </div>
 
-   
+        <div class="mini-stat">
+            <h3>💰 @maxPrice.ToString("N0") €</h3>
+            <p>Max Price</p>
+        </div>
 
     </div>
 
@@ -631,18 +657,26 @@ justify-content:center;
         @foreach (var car in Model)
 {
     <tr>
-     <td>
-    <img src="@car.ImageUrl"
-         width="240" />
-</td>
+            <td>
+                <a href="/Home/Details/@car.Id">
+                    <img src="@car.ImageUrl"
+                         width="240"
+                         style="height:140px; object-fit:cover;"
+                         onerror="this.src='/images/hero.jpg'" />
+                </a>
+            </td>
 
-<td>
-    @car.Brand
-</td>
+            <td>
+                <a href="/Home/Details/@car.Id" class="car-link">
+                    @car.Brand
+                </a>
+            </td>
 
-<td>
-    @car.Model
-</td>
+            <td>
+                <a href="/Home/Details/@car.Id" class="car-link">
+                    @car.Model
+                </a>
+            </td>
 
 <td>
     @car.Year
